@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    App()
                 }
             }
         }
@@ -30,14 +30,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun App() {
+
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     CookiMyRecipeBookTheme {
-        Greeting("Android")
+        App()
     }
 }

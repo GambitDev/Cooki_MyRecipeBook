@@ -1,4 +1,4 @@
-package com.gambit.cooki_myrecipebook.ui.add_recipe
+package com.gambit.cooki_myrecipebook.ui.screens.add_recipe
 
 import androidx.lifecycle.ViewModel
 import com.gambit.cooki_myrecipebook.data.repositories.Repository
