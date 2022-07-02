@@ -6,26 +6,49 @@ import androidx.room.Relation
 import com.gambit.cooki_myrecipebook.data.local_data.entities.cross_refs.RecipeAndCategoryCrossRef
 import com.gambit.cooki_myrecipebook.data.local_data.entities.cross_refs.RecipeAndIngredientCrossRef
 import com.gambit.cooki_myrecipebook.data.local_data.entities.cross_refs.RecipeAndTagCrossRef
+import com.gambit.cooki_myrecipebook.data.local_data.entities.enums.SkillLevel
 
 data class Recipe(
-    @Embedded
-    val recipeEntity : RecipeEntity,
+    var recipeId: Int = 0,
+    var title: String,
+    var description: String,
+    var instructions: List<String>,
+    var dateCreated: Long,
+    var imagesUriList: List<String>,
+    var servings: Int,
+    var cookingTime: Long,
+    var skillLevel: SkillLevel,
     @Relation(
         parentColumn = "recipeId",
-        entityColumn = "ingredientId",
-        associateBy = Junction(RecipeAndIngredientCrossRef::class)
+        entity = Ingredient::class,
+        entityColumn = "name",
+        associateBy = Junction(
+            value = RecipeAndIngredientCrossRef::class,
+            parentColumn = "recipeId",
+            entityColumn = "name"
+        )
     )
-    val ingredients: List<Ingredient>,
+    var ingredients: List<Ingredient>,
     @Relation(
         parentColumn = "recipeId",
-        entityColumn = "tagId",
-        associateBy = Junction(RecipeAndTagCrossRef::class)
+        entity = Tag::class,
+        entityColumn = "name",
+        associateBy = Junction(
+            value = RecipeAndTagCrossRef::class,
+            parentColumn = "recipeId",
+            entityColumn = "name"
+        )
     )
-    val tags: List<Tag>,
+    var tags: List<Tag>,
     @Relation(
         parentColumn = "recipeId",
-        entityColumn = "categoryId",
-        associateBy = Junction(RecipeAndCategoryCrossRef::class)
+        entity = Category::class,
+        entityColumn = "name",
+        associateBy = Junction(
+            value = RecipeAndCategoryCrossRef::class,
+            parentColumn = "recipeId",
+            entityColumn = "name"
+        )
     )
-    val category: Category
+    var category: Category
 )

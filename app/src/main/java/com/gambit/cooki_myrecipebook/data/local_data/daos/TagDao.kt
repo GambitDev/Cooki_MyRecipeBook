@@ -13,11 +13,11 @@ interface TagDao {
     suspend fun deleteTag(tag: Tag)
 
     @Query("SELECT * FROM tags")
-    suspend fun getAllTags(): Flow<List<Tag>>
+    suspend fun getAllTags(): List<Tag>
 
-    @Query("SELECT * FROM tags WHERE id = :id")
-    suspend fun getTagById(id: Int): Tag
+    @Query("SELECT * FROM tags WHERE name = :name")
+    suspend fun getTagByName(name: String): Tag
 
     @Query("SELECT * FROM tags WHERE name LIKE '%' || :query || '%'")
-    suspend fun searchForAutoCompleteCandidates(query: String): Flow<List<Tag>>
+    suspend fun searchForAutoCompleteCandidates(query: String): List<Tag>
 }

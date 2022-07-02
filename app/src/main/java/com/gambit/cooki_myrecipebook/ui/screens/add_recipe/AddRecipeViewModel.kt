@@ -5,7 +5,7 @@ import com.gambit.cooki_myrecipebook.data.repositories.Repository
 
 class AddRecipeViewModel(
     private val repository: Repository,
-    private val stateHolder: RecipeStateHolder = RecipeStateHolder()
+    private val stateHolder: RecipeStateHolder
 ): ViewModel() {
 
 }

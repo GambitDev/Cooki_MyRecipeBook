@@ -13,11 +13,11 @@ interface IngredientDao {
     suspend fun deleteIngredient(ingredient: Ingredient)
 
     @Query("SELECT * FROM ingredients")
-    suspend fun getAllIngredients(): Flow<List<Ingredient>>
+    suspend fun getAllIngredients(): List<Ingredient>
 
-    @Query("SELECT * FROM ingredients WHERE id = :id")
-    suspend fun getIngredientById(id: Int): Ingredient
+    @Query("SELECT * FROM ingredients WHERE name = :name")
+    suspend fun getIngredientByName(name: String): Ingredient
 
     @Query("SELECT * FROM ingredients WHERE name LIKE '%' || :query || '%'")
-    suspend fun searchForAutoCompleteCandidates(query: String): Flow<List<Ingredient>>
+    suspend fun searchForAutoCompleteCandidates(query: String): List<Ingredient>
 }

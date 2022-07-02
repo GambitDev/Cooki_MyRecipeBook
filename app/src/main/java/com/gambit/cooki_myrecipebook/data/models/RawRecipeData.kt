@@ -1,4 +1,4 @@
-package com.gambit.cooki_myrecipebook.data
+package com.gambit.cooki_myrecipebook.data.models
 
 import com.gambit.cooki_myrecipebook.data.local_data.entities.Category
 import com.gambit.cooki_myrecipebook.data.local_data.entities.Ingredient
@@ -15,9 +15,9 @@ data class RawRecipeData(
     val category: Category
 ) {
     val tagCrossRefs =
-        tagList.map { RecipeAndTagCrossRef(recipeEntity.id, it.name) }
+        tagList.map { RecipeAndTagCrossRef(recipeEntity.recipeId, it.name) }
     val ingredientCrossRefs =
-        ingredientList.map { RecipeAndIngredientCrossRef(recipeEntity.id, it.name) }
+        ingredientList.map { RecipeAndIngredientCrossRef(recipeEntity.recipeId, it.name) }
     val categoryCrossRef =
-        RecipeAndCategoryCrossRef(recipeEntity.id, category.name)
+        RecipeAndCategoryCrossRef(recipeEntity.recipeId, category.name)
 }

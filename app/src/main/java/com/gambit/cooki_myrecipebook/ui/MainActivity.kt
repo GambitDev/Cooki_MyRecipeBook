@@ -10,6 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.gambit.cooki_myrecipebook.ui.screens.Screen
+import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.AddRecipeScreen
 import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,7 +36,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun App() {
-
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = Screen.AddRecipeScreen.route
+    ) {
+        composable(route = Screen.AddRecipeScreen.route) {
+            AddRecipeScreen()
+        }
+    }
 }
 
 @Preview(showBackground = true)

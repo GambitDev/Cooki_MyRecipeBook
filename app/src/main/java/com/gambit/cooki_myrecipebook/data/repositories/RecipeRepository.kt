@@ -1,6 +1,6 @@
 package com.gambit.cooki_myrecipebook.data.repositories
 
-import com.gambit.cooki_myrecipebook.data.RawRecipeData
+import com.gambit.cooki_myrecipebook.data.models.RawRecipeData
 import com.gambit.cooki_myrecipebook.data.local_data.LocalDataSource
 
 class RecipeRepository(override val localDataSource: LocalDataSource) : Repository {

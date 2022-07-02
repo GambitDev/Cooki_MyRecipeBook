@@ -7,11 +7,11 @@ import com.gambit.cooki_myrecipebook.data.local_data.entities.enums.MeasurementT
 @Entity(tableName = "ingredients")
 data class Ingredient(
     @PrimaryKey
-    val name: String,
-    val measurement: Measurement
+    var name: String,
+    var measurement: Measurement
 )
 
 data class Measurement(
-    val amount: Float,
-    val type: MeasurementType
+    var amount: Float,
+    var type: MeasurementType
 )
