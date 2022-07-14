@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Cooki - My Recipe Book</string>
+    <string name="back">Back</string>
+    <string name="toggle_menu">Toggle Menu</string>
 </resources>

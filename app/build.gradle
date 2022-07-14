@@ -44,6 +44,12 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        }
+    }
 }
 
 dependencies {
@@ -59,6 +65,7 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
 
     def nav_version = "2.5.0"
     implementation "androidx.navigation:navigation-compose:$nav_version"
@@ -71,4 +78,12 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
 
     implementation 'com.google.code.gson:gson:2.9.0'
+
+    def pager_version = "0.24.13-rc"
+    implementation "com.google.accompanist:accompanist-pager:$pager_version"
+    implementation "com.google.accompanist:accompanist-pager-indicators:$pager_version"
+
+    def ui_controller_version = "0.24.13-rc"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$ui_controller_version"
+
 }
