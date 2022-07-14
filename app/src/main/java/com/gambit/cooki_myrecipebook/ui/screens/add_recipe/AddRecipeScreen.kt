@@ -1,6 +1,7 @@
 package com.gambit.cooki_myrecipebook.ui.screens.add_recipe
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.ArrowForwardIos
@@ -13,8 +14,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gambit.cooki_myrecipebook.R
+import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.composables.IndicatorRow
+import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.composables.PagerContent
+import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.*
+import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 
@@ -30,16 +36,10 @@ fun AddRecipeScreen() {
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth(),
-            count = AddRecipeStep.values().size,
+            count = AddRecipeStep.count(),
             state = pagerState
         ) { pageNumber ->
-            when (AddRecipeStep.values()[pageNumber]) {
-                AddRecipeStep.RecipeDetails -> RecipeDetailsStep()
-                AddRecipeStep.Ingredients -> IngredientsStep()
-                AddRecipeStep.Instructions -> InstructionsStep()
-                AddRecipeStep.Metadata -> RecipeMetadataStep()
-                AddRecipeStep.Images -> RecipeImagesStep()
-            }
+            PagerContent(pageNumber = pageNumber)
         }
 
         IndicatorRow(
@@ -50,118 +50,28 @@ fun AddRecipeScreen() {
     }
 }
 
-@OptIn(ExperimentalPagerApi::class)
+@Preview(showBackground = true)
 @Composable
-fun IndicatorRow(
-    modifier: Modifier = Modifier,
-    pagerState: PagerState
-) {
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+fun LightAddRecipeScreenPreview() {
+    CookiMyRecipeBookTheme(
+        darkTheme = false,
+        dynamicColor = false
     ) {
-        val scope = rememberCoroutineScope()
-        IconButton(
-            onClick = {
-                val current = pagerState.currentPage
-                if (current > 0)
-                    scope.launch {
-                        pagerState.animateScrollToPage(current - 1)
-                    }
-            },
-            enabled = pagerState.currentPage > 0
-        ) {
-            Icon(
-                modifier = Modifier.size(14.dp),
-                imageVector = Icons.Default.ArrowBackIos,
-                contentDescription = stringResource(id = R.string.back)
-            )
-        }
-        HorizontalPagerIndicator(
-            pagerState = pagerState,
-            inactiveColor = MaterialTheme.colorScheme.primary,
-            indicatorWidth = 13.dp
-        )
-        IconButton(
-            onClick = {
-                val current = pagerState.currentPage
-                if (current < pagerState.pageCount - 1)
-                    scope.launch {
-                        pagerState.animateScrollToPage(current + 1)
-                    }
-            },
-            enabled = pagerState.currentPage < pagerState.pageCount - 1
-        ) {
-            Icon(
-                modifier = Modifier.size(14.dp),
-                imageVector = Icons.Default.ArrowForwardIos,
-                contentDescription = stringResource(id = R.string.back)
-            )
+        Surface(color = MaterialTheme.colorScheme.background) {
+            AddRecipeScreen()
         }
     }
 }
 
-enum class AddRecipeStep {
-    RecipeDetails, Ingredients, Instructions, Metadata, Images
-}
-
+@Preview(showBackground = true)
 @Composable
-fun RecipeDetailsStep(
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+fun DarkAddRecipeScreenPreview() {
+    CookiMyRecipeBookTheme(
+        darkTheme = true,
+        dynamicColor = false
     ) {
-        Text(text = "RecipeDetailsStep")
-    }
-}
-
-@Composable
-fun IngredientsStep(
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "IngredientsStep")
-    }
-}
-
-@Composable
-fun InstructionsStep(
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "InstructionsStep")
-    }
-}
-
-@Composable
-fun RecipeMetadataStep(
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "RecipeMetadataStep")
-    }
-}
-
-@Composable
-fun RecipeImagesStep(
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "RecipeImagesStep")
+        Surface(color = MaterialTheme.colorScheme.background) {
+            AddRecipeScreen()
+        }
     }
 }

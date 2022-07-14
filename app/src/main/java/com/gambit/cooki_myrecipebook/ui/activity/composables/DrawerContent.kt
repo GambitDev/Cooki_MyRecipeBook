@@ -19,7 +19,7 @@ fun DrawerContent(
 
 @Preview(showBackground = true)
 @Composable
-fun LightDrawerPreview() {
+fun LightDrawerContentPreview() {
     CookiMyRecipeBookTheme(
         darkTheme = false,
         dynamicColor = false
@@ -30,7 +30,7 @@ fun LightDrawerPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun DarkDrawerPreview() {
+fun DarkDrawerContentPreview() {
     CookiMyRecipeBookTheme(
         darkTheme = true,
         dynamicColor = false
