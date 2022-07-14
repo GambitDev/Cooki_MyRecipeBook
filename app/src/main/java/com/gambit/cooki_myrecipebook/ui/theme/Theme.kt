@@ -25,7 +25,7 @@ private val DarkColorScheme = darkColorScheme(
 
 private val LightColorScheme = lightColorScheme(
     primary = Brown,
-    secondary = PurpleGrey40,
+    secondary = DarkBrown,
     tertiary = Pink40,
     background = Beige,
 
@@ -66,7 +66,7 @@ fun CookiMyRecipeBookTheme(
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setStatusBarColor(
-            color = if(darkTheme) DarkColorScheme.primary else DarkBrown,
+            color = if(darkTheme) DarkColorScheme.primary else LightColorScheme.secondary,
             darkIcons = false
         )
     }

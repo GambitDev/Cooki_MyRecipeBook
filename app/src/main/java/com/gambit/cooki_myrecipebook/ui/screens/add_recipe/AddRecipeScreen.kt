@@ -39,7 +39,11 @@ fun AddRecipeScreen() {
             count = AddRecipeStep.count(),
             state = pagerState
         ) { pageNumber ->
-            PagerContent(pageNumber = pageNumber)
+            PagerContent(
+                modifier = Modifier
+                    .padding(vertical = 18.dp, horizontal = 40.dp),
+                pageNumber = pageNumber
+            )
         }
 
         IndicatorRow(

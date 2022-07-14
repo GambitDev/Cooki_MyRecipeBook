@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.*
+import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.details.RecipeDetailsStep
 import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 
 @Composable
@@ -14,21 +15,11 @@ fun PagerContent(
     pageNumber: Int
 ) {
     when (AddRecipeStep.getStepAt(pageNumber)) {
-        AddRecipeStep.Details -> RecipeDetailsStep(
-            modifier = modifier
-        )
-        AddRecipeStep.Ingredients -> IngredientsStep(
-            modifier = modifier
-        )
-        AddRecipeStep.Instructions -> InstructionsStep(
-            modifier = modifier
-        )
-        AddRecipeStep.Metadata -> RecipeMetadataStep(
-            modifier = modifier
-        )
-        AddRecipeStep.Images -> RecipeImagesStep(
-            modifier = modifier
-        )
+        AddRecipeStep.Details -> RecipeDetailsStep(modifier = modifier)
+        AddRecipeStep.Ingredients -> IngredientsStep(modifier = modifier)
+        AddRecipeStep.Instructions -> InstructionsStep(modifier = modifier)
+        AddRecipeStep.Metadata -> RecipeMetadataStep(modifier = modifier)
+        AddRecipeStep.Images -> RecipeImagesStep(modifier = modifier)
     }
 }
 

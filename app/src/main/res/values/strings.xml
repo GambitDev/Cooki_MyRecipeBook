@@ -1,5 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cooki - My Recipe Book</string>
     <string name="back">Back</string>
     <string name="toggle_menu">Toggle Menu</string>
+    <string name="recipe_details_step_title">Fill in recipe details</string>
+    <string name="add_recipe_title_field_label">Recipe Title</string>
+    <string name="add_recipe_desc_field_label">Description</string>
+    <string name="add_recipe_servings_field_label">Servings</string>
+    <string name="forward">Forward</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="add_recipe_cooking_time_label">Cooking Time</string>
+    <string name="add_recipe_cooking_time_placeholder">Enter number</string>
+    <string name="add_recipe_skill_level_label">Skill Level</string>
 </resources>

@@ -8,10 +8,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.ArrowForwardIos
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -55,6 +52,7 @@ fun IndicatorRow(
         HorizontalPagerIndicator(
             pagerState = pagerState,
             inactiveColor = MaterialTheme.colorScheme.primary,
+            activeColor = LocalContentColor.current,
             indicatorWidth = 13.dp
         )
         IconButton(
@@ -70,7 +68,7 @@ fun IndicatorRow(
             Icon(
                 modifier = Modifier.size(14.dp),
                 imageVector = Icons.Default.ArrowForwardIos,
-                contentDescription = stringResource(id = R.string.back)
+                contentDescription = stringResource(id = R.string.forward)
             )
         }
     }
@@ -86,6 +84,7 @@ fun LightIndicatorRowPreview() {
     ) {
         Surface(color = MaterialTheme.colorScheme.background) {
             val pagerState = rememberPagerState()
+            HorizontalPager(count = 5, state = pagerState) { }
             IndicatorRow(pagerState = pagerState)
         }
     }
@@ -101,6 +100,7 @@ fun DarkIndicatorRowPreview() {
     ) {
         Surface(color = MaterialTheme.colorScheme.background) {
             val pagerState = rememberPagerState()
+            HorizontalPager(count = 5, state = pagerState) { }
             IndicatorRow(pagerState = pagerState)
         }
     }

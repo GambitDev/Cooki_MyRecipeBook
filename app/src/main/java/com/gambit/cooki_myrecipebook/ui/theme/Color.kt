@@ -12,4 +12,4 @@ val Pink40 = Color(0xFF7D5260)
 
 val Beige = Color(0xFFF5EDED)
 val Brown = Color(0xFFAF7676)
-val DarkBrown = Color(0xFF865454)
+val DarkBrown = Color(0xFF330000)
