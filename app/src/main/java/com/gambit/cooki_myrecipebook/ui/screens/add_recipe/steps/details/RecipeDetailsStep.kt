@@ -1,9 +1,14 @@
 package com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.details
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.SaverScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
@@ -17,57 +22,79 @@ import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 
 @Composable
 fun RecipeDetailsStep(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(all = 0.dp)
 ) {
-    var titleTextFieldValue by remember {
-        mutableStateOf(TextFieldValue())
-    }
-    var descriptionTextFieldValue by remember {
-        mutableStateOf(TextFieldValue())
-    }
-    var servingsTextFieldValue by remember {
-        mutableStateOf(TextFieldValue())
-    }
-    var cookingTimeUnitTypeState by remember {
-        mutableStateOf(TimeUnit.Hours)
-    }
-    var cookingTimeFieldValue by remember {
-        mutableStateOf(TextFieldValue())
-    }
-    var selectedSkillLevel by remember {
-        mutableStateOf(SkillLevel.NoSkill)
-    }
+    val stepState = rememberSaveable(
+        saver = RecipeDetailsStepStateSaver()
+    ) { RecipeDetailsStepStateHolder() }
+    val scrollState = rememberScrollState()
+
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState)
+            .padding(contentPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         StepTitle(stringRes = R.string.recipe_details_step_title)
         TitleField(
-            fieldValue = titleTextFieldValue,
-            onFieldValueChanged = { titleTextFieldValue = it }
+            fieldValue = stepState.titleTextFieldValue,
+            onFieldValueChanged = { stepState.titleTextFieldValue = it }
         )
         DescriptionField(
-            fieldValue = descriptionTextFieldValue,
-            onFieldValueChanged = { descriptionTextFieldValue = it }
+            fieldValue = stepState.descriptionTextFieldValue,
+            onFieldValueChanged = { stepState.descriptionTextFieldValue = it }
         )
         ServingsField(
-            fieldValue = servingsTextFieldValue,
-            onFieldValueChanged = { servingsTextFieldValue = it }
+            fieldValue = stepState.servingsTextFieldValue,
+            onFieldValueChanged = { stepState.servingsTextFieldValue = it }
         )
         CookingTimeField(
-            cookingTimeState = cookingTimeFieldValue,
-            onCookingTimeStateChanged = { cookingTimeFieldValue = it },
-            selectionTypeState = cookingTimeUnitTypeState,
+            cookingTimeState = stepState.cookingTimeFieldValue,
+            onCookingTimeStateChanged = { stepState.cookingTimeFieldValue = it },
+            selectionTypeState = stepState.cookingTimeUnitTypeState,
             onSelectionTypeStateChanged = {
-                cookingTimeUnitTypeState = !cookingTimeUnitTypeState
+                stepState.cookingTimeUnitTypeState = !stepState.cookingTimeUnitTypeState
             }
         )
         SkillLevelSelector(
-            selectedSkillLevel = selectedSkillLevel,
-            onSelectedSkillLevelChanged = { selectedSkillLevel = it }
+            selectedSkillLevel = stepState.selectedSkillLevel,
+            onSelectedSkillLevelChanged = { stepState.selectedSkillLevel = it }
         )
     }
+}
+
+class RecipeDetailsStepStateHolder {
+    var titleTextFieldValue by mutableStateOf(TextFieldValue())
+    var descriptionTextFieldValue by mutableStateOf(TextFieldValue())
+    var servingsTextFieldValue by mutableStateOf(TextFieldValue())
+    var cookingTimeUnitTypeState by mutableStateOf(TimeUnit.Hours)
+    var cookingTimeFieldValue by mutableStateOf(TextFieldValue())
+    var selectedSkillLevel by mutableStateOf(SkillLevel.NoSkill)
+}
+
+class RecipeDetailsStepStateSaver: Saver<RecipeDetailsStepStateHolder, List<Any>> {
+    override fun restore(value: List<Any>) =
+        RecipeDetailsStepStateHolder().apply {
+            titleTextFieldValue = value[0] as TextFieldValue
+            descriptionTextFieldValue = value[1] as TextFieldValue
+            servingsTextFieldValue = value[2] as TextFieldValue
+            cookingTimeUnitTypeState = value[3] as TimeUnit
+            cookingTimeFieldValue = value[4] as TextFieldValue
+            selectedSkillLevel = value[5] as SkillLevel
+        }
+
+    override fun SaverScope.save(value: RecipeDetailsStepStateHolder) =
+        listOf(
+            value.titleTextFieldValue,
+            value.descriptionTextFieldValue,
+            value.servingsTextFieldValue,
+            value.cookingTimeUnitTypeState,
+            value.cookingTimeFieldValue,
+            value.selectedSkillLevel
+        )
 }
 
 @Preview(showBackground = true)

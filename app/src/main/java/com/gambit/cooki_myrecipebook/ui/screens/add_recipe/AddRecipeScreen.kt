@@ -40,8 +40,7 @@ fun AddRecipeScreen() {
             state = pagerState
         ) { pageNumber ->
             PagerContent(
-                modifier = Modifier
-                    .padding(vertical = 18.dp, horizontal = 40.dp),
+                modifier = Modifier,
                 pageNumber = pageNumber
             )
         }

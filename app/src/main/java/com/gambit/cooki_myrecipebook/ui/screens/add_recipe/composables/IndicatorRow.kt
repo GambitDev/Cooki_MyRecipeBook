@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gambit.cooki_myrecipebook.R
+import com.gambit.cooki_myrecipebook.ext.mirrorOnRtl
 import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
@@ -44,7 +45,9 @@ fun IndicatorRow(
             enabled = pagerState.currentPage > 0
         ) {
             Icon(
-                modifier = Modifier.size(14.dp),
+                modifier = Modifier
+                    .size(14.dp)
+                    .mirrorOnRtl(),
                 imageVector = Icons.Default.ArrowBackIos,
                 contentDescription = stringResource(id = R.string.back)
             )
@@ -66,7 +69,9 @@ fun IndicatorRow(
             enabled = pagerState.currentPage < pagerState.pageCount - 1
         ) {
             Icon(
-                modifier = Modifier.size(14.dp),
+                modifier = Modifier
+                    .size(14.dp)
+                    .mirrorOnRtl(),
                 imageVector = Icons.Default.ArrowForwardIos,
                 contentDescription = stringResource(id = R.string.forward)
             )

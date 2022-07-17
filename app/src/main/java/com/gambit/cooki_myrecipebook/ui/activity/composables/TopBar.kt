@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gambit.cooki_myrecipebook.R
-import com.gambit.cooki_myrecipebook.ext.mirror
+import com.gambit.cooki_myrecipebook.ext.mirrorOnLtr
 import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 import kotlinx.coroutines.launch
 
@@ -43,7 +43,7 @@ fun TopBar(
             }
         ) {
             Icon(
-                modifier = Modifier.mirror(),
+                modifier = Modifier.mirrorOnLtr(),
                 painter = painterResource(id = R.drawable.ic_menu),
                 contentDescription = stringResource(id = R.string.toggle_menu),
                 tint = Color.White
