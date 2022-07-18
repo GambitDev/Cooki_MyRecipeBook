@@ -1,6 +1,8 @@
 package com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.details.composables
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardActionScope
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
@@ -20,7 +22,8 @@ import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 fun ServingsField(
     modifier: Modifier = Modifier,
     fieldValue: TextFieldValue,
-    onFieldValueChanged: (TextFieldValue) -> Unit
+    onFieldValueChanged: (TextFieldValue) -> Unit,
+    closeKeyboard: KeyboardActionScope.() -> Unit = { }
 ) {
     OutlinedTextField(
         modifier = modifier
@@ -41,7 +44,10 @@ fun ServingsField(
                 )
             )
         },
-        singleLine = true
+        singleLine = true,
+        keyboardActions = KeyboardActions(
+            onDone = closeKeyboard
+        )
     )
 }
 

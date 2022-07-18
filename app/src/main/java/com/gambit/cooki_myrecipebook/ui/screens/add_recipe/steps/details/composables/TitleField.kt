@@ -1,23 +1,32 @@
 package com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.details.composables
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardActionScope
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.gambit.cooki_myrecipebook.R
 import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TitleField(
     modifier: Modifier = Modifier,
     fieldValue: TextFieldValue,
-    onFieldValueChanged: (TextFieldValue) -> Unit
+    onFieldValueChanged: (TextFieldValue) -> Unit,
+    closeKeyboard: KeyboardActionScope.() -> Unit = { }
 ) {
     OutlinedTextField(
         modifier = modifier.fillMaxWidth(),
@@ -30,7 +39,10 @@ fun TitleField(
                 )
             )
         },
-        singleLine = true
+        singleLine = true,
+        keyboardActions = KeyboardActions(
+            onDone = closeKeyboard
+        )
     )
 }
 

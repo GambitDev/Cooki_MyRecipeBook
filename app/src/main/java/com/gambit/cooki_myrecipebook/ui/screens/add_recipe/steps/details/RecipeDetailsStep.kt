@@ -10,7 +10,11 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.SaverScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,6 +24,7 @@ import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.composables.Ste
 import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.details.composables.*
 import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun RecipeDetailsStep(
     modifier: Modifier = Modifier,
@@ -29,6 +34,8 @@ fun RecipeDetailsStep(
         saver = RecipeDetailsStepStateSaver()
     ) { RecipeDetailsStepStateHolder() }
     val scrollState = rememberScrollState()
+    val keyboardController =
+        LocalSoftwareKeyboardController.current
 
     Column(
         modifier = modifier
@@ -41,15 +48,18 @@ fun RecipeDetailsStep(
         StepTitle(stringRes = R.string.recipe_details_step_title)
         TitleField(
             fieldValue = stepState.titleTextFieldValue,
-            onFieldValueChanged = { stepState.titleTextFieldValue = it }
+            onFieldValueChanged = { stepState.titleTextFieldValue = it },
+            closeKeyboard = { keyboardController?.hide() }
         )
         DescriptionField(
             fieldValue = stepState.descriptionTextFieldValue,
-            onFieldValueChanged = { stepState.descriptionTextFieldValue = it }
+            onFieldValueChanged = { stepState.descriptionTextFieldValue = it },
+            closeKeyboard = { keyboardController?.hide() }
         )
         ServingsField(
             fieldValue = stepState.servingsTextFieldValue,
-            onFieldValueChanged = { stepState.servingsTextFieldValue = it }
+            onFieldValueChanged = { stepState.servingsTextFieldValue = it },
+            closeKeyboard = { keyboardController?.hide() }
         )
         CookingTimeField(
             cookingTimeState = stepState.cookingTimeFieldValue,
@@ -57,7 +67,8 @@ fun RecipeDetailsStep(
             selectionTypeState = stepState.cookingTimeUnitTypeState,
             onSelectionTypeStateChanged = {
                 stepState.cookingTimeUnitTypeState = !stepState.cookingTimeUnitTypeState
-            }
+            },
+            closeKeyboard = { keyboardController?.hide() }
         )
         SkillLevelSelector(
             selectedSkillLevel = stepState.selectedSkillLevel,

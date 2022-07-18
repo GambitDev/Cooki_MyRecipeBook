@@ -3,6 +3,8 @@ package com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.details.compos
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActionScope
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,7 +24,8 @@ fun CookingTimeField(
     cookingTimeState: TextFieldValue,
     onCookingTimeStateChanged: (TextFieldValue) -> Unit,
     selectionTypeState: TimeUnit,
-    onSelectionTypeStateChanged: () -> Unit
+    onSelectionTypeStateChanged: () -> Unit,
+    closeKeyboard: KeyboardActionScope.() -> Unit = { }
 ) {
     Column(
         modifier = modifier
@@ -46,10 +49,11 @@ fun CookingTimeField(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            BorderlessTextField(
+            BorderlessNumberField(
                 modifier = Modifier.weight(1f),
                 cookingTimeState = cookingTimeState,
-                onCookingTimeStateChanged = onCookingTimeStateChanged
+                onCookingTimeStateChanged = onCookingTimeStateChanged,
+                closeKeyboard = closeKeyboard
             )
             HourMinuteSwitch(
                 modifier = modifier,
@@ -61,10 +65,11 @@ fun CookingTimeField(
 }
 
 @Composable
-fun BorderlessTextField(
+fun BorderlessNumberField(
     modifier: Modifier = Modifier,
     cookingTimeState: TextFieldValue,
-    onCookingTimeStateChanged: (TextFieldValue) -> Unit
+    onCookingTimeStateChanged: (TextFieldValue) -> Unit,
+    closeKeyboard: KeyboardActionScope.() -> Unit
 ) {
     BasicTextField(
         modifier = modifier,
@@ -85,6 +90,9 @@ fun BorderlessTextField(
                 )
             }
             innerTextField()
-        }
+        },
+        keyboardActions = KeyboardActions(
+            onDone = closeKeyboard
+        )
     )
 }
