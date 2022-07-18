@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/gambi/AndroidStudioProjects/CookiMyRecipeBook/app/src/main/res/drawable/bg_pattern.xml" value="0.1625" />
         <entry key="..\:/Users/gambi/AndroidStudioProjects/CookiMyRecipeBook/app/src/main/res/drawable/ic_menu.xml" value="0.1995" />
+        <entry key="..\:/Users/gambi/AndroidStudioProjects/CookiMyRecipeBook/app/src/main/res/drawable/light_bg_pattern.xml" value="0.1625" />
+        <entry key="..\:/Users/gambi/AndroidStudioProjects/CookiMyRecipeBook/app/src/main/res/drawable/repeating_bg_pattern.xml" value="0.1625" />
         <entry key="..\:/Users/gambi/AndroidStudioProjects/CookiMyRecipeBook/app/src/main/res/xml/com_google_android_gms_fonts_certs.xml" value="0.24895833333333334" />
       </map>
     </option>

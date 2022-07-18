@@ -17,6 +17,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.gambit.cooki_myrecipebook.R
 import com.gambit.cooki_myrecipebook.ext.isOnlyNumericCharacters
+import com.gambit.cooki_myrecipebook.ext.withOutlineBorder
 
 @Composable
 fun CookingTimeField(
@@ -31,11 +32,7 @@ fun CookingTimeField(
         modifier = modifier
             .padding(top = 8.dp) // this is used to simulate OutlinedTextField's top padding
             .fillMaxWidth()
-            .border(
-                1.dp,
-                MaterialTheme.colorScheme.outline,
-                MaterialTheme.shapes.extraSmall
-            )
+            .withOutlineBorder()
             .padding(16.dp), // this is for padding inside of column
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {

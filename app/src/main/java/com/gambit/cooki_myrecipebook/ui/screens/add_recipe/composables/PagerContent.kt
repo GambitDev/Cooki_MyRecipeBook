@@ -1,7 +1,6 @@
 package com.gambit.cooki_myrecipebook.ui.screens.add_recipe.composables
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -10,6 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.*
 import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.details.RecipeDetailsStep
+import com.gambit.cooki_myrecipebook.ui.screens.add_recipe.steps.ingredients.IngredientsStep
 import com.gambit.cooki_myrecipebook.ui.theme.CookiMyRecipeBookTheme
 
 @Composable

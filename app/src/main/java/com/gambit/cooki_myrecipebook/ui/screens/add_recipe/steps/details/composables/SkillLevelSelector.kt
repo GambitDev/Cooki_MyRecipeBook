@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gambit.cooki_myrecipebook.R
 import com.gambit.cooki_myrecipebook.data.local_data.entities.enums.SkillLevel
+import com.gambit.cooki_myrecipebook.ext.withOutlineBorder
 
 @Composable
 fun SkillLevelSelector(
@@ -25,11 +26,7 @@ fun SkillLevelSelector(
         modifier = modifier
             .padding(top = 8.dp) // this is used to simulate OutlinedTextField's top padding
             .fillMaxWidth()
-            .border(
-                1.dp,
-                MaterialTheme.colorScheme.outline,
-                MaterialTheme.shapes.extraSmall
-            )
+            .withOutlineBorder()
             .padding(16.dp), // this is for padding inside of row
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
